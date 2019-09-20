@@ -2,7 +2,7 @@ import SweetClass.Sweet;
 
 public interface BoxSweet {
     void add(Sweet obj);
-    void delete();
+    void deleteLastItem();
     void delete(int index);
     double getWeightBox();
     double getPriceBox();

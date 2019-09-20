@@ -48,7 +48,29 @@ public class Application {
         box.reduceWeight(2500);
         box.getInfoSweetAll();
         System.out.println(box.getInfoBox());
+        System.out.println();
 
+        System.out.println("Пробуем удалить лишних элементов: ");
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.deleteLastItem();
+        box.getInfoSweetAll();
+        box.sortByWeight();
+        box.delete(-5);
+        System.out.println(box.getInfoBox());
     }
 
     public static void initialSweet() {             //Создаем сладости и заполняем по ним информацию

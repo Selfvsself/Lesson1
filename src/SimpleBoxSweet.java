@@ -17,8 +17,7 @@ public class SimpleBoxSweet implements BoxSweet{
     @Override
     public void add(Sweet obj) {
         if (lenght == arraySweets.length-1) {                                 // Если добавляем новый элемент в последний элемент массива
-            Sweet[] tmpArray = arraySweets;                                  // Создаем временный массив и присваиваем ему ссылку на основной массив класса
-            arraySweets = Arrays.copyOf(tmpArray, lenght + 5);    //А создаем новый массив новым размером и копируем в него старый массив
+            arraySweets = Arrays.copyOf(arraySweets, lenght + 5);    //То создаем новый массив новым размером и копируем в него старый массив
         }
         weightBox += obj.getWeight();                                       //Добавляем вес к коробке с добавлением сладости
         priceBox += obj.getPrice();                                           //Добавляем цену с добавлением сладости
@@ -27,17 +26,19 @@ public class SimpleBoxSweet implements BoxSweet{
     }
 
     @Override
-    public void delete() {
-        weightBox -= arraySweets[lenght - 1].getWeight();            //Убавляем вес с коробки с удалением сладости
-        priceBox -= arraySweets[lenght - 1].getPrice();             //Убавляем цену с удалением сладости
-        lenght--;
-        arraySweets[lenght] = null;
+    public void deleteLastItem() {
+        if (lenght > 0) {
+            weightBox -= arraySweets[lenght - 1].getWeight();            //Убавляем вес с коробки с удалением сладости
+            priceBox -= arraySweets[lenght - 1].getPrice();             //Убавляем цену с удалением сладости
+            lenght--;
+            arraySweets[lenght] = null;
+        }
     }
 
     @Override
     public void delete(int index) {
-        if (index >= lenght) {
-            throw new ArrayIndexOutOfBoundsException("Нету сладости под таким индексом");
+        if (index >= lenght || index < 0) {
+            throw new ArrayIndexOutOfBoundsException("Нету сладости под индексом " + index);
         }
 
         weightBox -= arraySweets[index].getWeight();        //Убавляем вес с коробки с удалением сладости
@@ -61,8 +62,8 @@ public class SimpleBoxSweet implements BoxSweet{
 
     @Override
     public String getInfoSweet(int index) {                 //Возвращаем информацию об одном элементе коробки в виде строки
-        if (index >= lenght) {
-            throw new ArrayIndexOutOfBoundsException("Нету сладости под таким индексом");
+        if (index >= lenght || index < 0) {
+            throw new ArrayIndexOutOfBoundsException("Нету сладости под индексом " + index);
         }
 
         return arraySweets[index].toString();
@@ -80,7 +81,7 @@ public class SimpleBoxSweet implements BoxSweet{
 
     @Override
     public String getInfoBox() {
-        return ("Вес: " + weightBox + ", Цена:" + priceBox);
+        return ("Вес: " + weightBox + "гр, Цена:" + priceBox + "р, Кол-во: " + lenght + "шт");
     }
 
     @Override
